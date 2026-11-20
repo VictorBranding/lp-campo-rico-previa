@@ -329,8 +329,9 @@ a { color: inherit; }
   .colunas .forma { width: auto; height: 100%; }
   .colunas .capsula { aspect-ratio: 2.25 / 1; }
   .abertura__texto p { font-size: 44px; line-height: 1.02; }
-  .cafe__pacote { inset: 9vh 0 0 0; width: 46vw; height: calc(46vw * 857 / 608); }
-  .cafe__capsula { --cw: 36vw; inset: 9vh 0 0 0; }
+
+  .cafe__pacote { inset: 11svh 0 calc(100lvh - 100svh) 0; width: min(40vw, 28svh); height: calc(min(40vw, 28svh) * 857 / 608); }
+  .cafe__capsula { --cw: min(32vw, 22svh); inset: 11svh 0 calc(100lvh - 100svh) 0; }
   .sol { width: 86vw; bottom: 38vh; }
   .cafe__intro { top: 84px; width: auto; right: var(--margem); }
   .cafe__intro h2 { font-size: 40px; }

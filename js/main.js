@@ -68,6 +68,9 @@
     tl.add(() => gsap.to(".logo-raios", { rotation: "+=360", svgOrigin: SOL, duration: 80, ease: "none", repeat: -1 }), 2.4);
   })();
 
+  ScrollTrigger.config({ ignoreMobileResize: true, autoRefreshEvents: "visibilitychange,DOMContentLoaded,load" });
+  let larguraAntes = window.innerWidth;
+  window.addEventListener("resize", () => { if (window.innerWidth !== larguraAntes) { larguraAntes = window.innerWidth; ScrollTrigger.refresh(); } });
   lenis = new Lenis({ lerp: 0.09 });
   lenis.on("scroll", (e) => { ScrollTrigger.update(); window.cafeEstado.velocidade = e.velocity; });
   gsap.ticker.add((t) => lenis.raf(t * 1000));
@@ -85,7 +88,8 @@
     });
   });
 
-  const vh = () => window.innerHeight, vw = () => window.innerWidth;
+  const fixoTopo = document.querySelector(".topo__fixo");
+  const vh = () => Math.max(window.innerHeight, fixoTopo ? fixoTopo.clientHeight : 0), vw = () => window.innerWidth;
   const celular = () => vw() < 760;
 
   const loops = [];

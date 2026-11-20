@@ -12,6 +12,7 @@
   --fonte: "Archivo", system-ui, sans-serif;
 }
 *, *::before, *::after { box-sizing: border-box; }
+html { overscroll-behavior-y: none; }
 html, body { margin: 0; }
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
@@ -348,6 +349,10 @@ a { color: inherit; }
   .cartao__img { height: 360px; }
   .comprar { padding-top: 88px; }
   .seletor { margin-left: 0; }
+
+  .barra__menu-botao, .barra--clara, .manejo__itens li { -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .barra--clara { background: var(--creme); }
+  .manejo__itens li { background: rgba(12,70,10,.92); }
   .desafio { padding: 14vh var(--margem) 12vh; }
   .desafio__texto { margin-top: 36px; font-size: 17px; }
   .manifesto__assina, .contato__texto > p { font-size: 17px; }

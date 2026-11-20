@@ -242,7 +242,7 @@
       .to(".cafe__capsula", { autoAlpha: 0, scale: 0.6, duration: 0.06 }, 0.67)
       .fromTo(".sol", { autoAlpha: 0, yPercent: 50 }, { autoAlpha: 1, yPercent: 0, duration: 0.1, ease: "power2.out" }, 0.68)
       .fromTo(".sol__disco", { scale: 0.6 }, { scale: 1, duration: 0.1, ease: "power2.out" }, 0.68)
-      .to(pacote, { scale: celular() ? 0.74 : 0.8, yPercent: -12, duration: 0.1 }, 0.67)
+      .to(pacote, { scale: celular() ? 0.74 : 0.8, yPercent: () => celular() ? -38 : -12, duration: 0.1 }, 0.67)
       .fromTo(".notas", { autoAlpha: 0, y: 50 }, { autoAlpha: 1, y: 0, duration: 0.08 }, 0.76)
       .fromTo(".notas__lista li", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, stagger: 0.03, duration: 0.05 }, 0.8)
 

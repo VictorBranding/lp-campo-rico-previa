@@ -52,6 +52,7 @@ if (fixo && canvasFrente) {
     const dados = [];
     const m = new THREE.Matrix4(), q = new THREE.Quaternion(), e = new THREE.Euler(), s = new THREE.Vector3(), pos = new THREE.Vector3();
     let meiaL = 8, meiaA = 6, centroPacote = 0;
+    const pacoteEl = fixo.querySelector(".cafe__pacote");
 
     let semente = evitaCentro ? 7 : 3;
     const aleat = () => { semente = (semente * 9301 + 49297) % 233280; return semente / 233280; };
@@ -74,7 +75,7 @@ if (fixo && canvasFrente) {
       meiaA = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.position.z;
       meiaL = meiaA * camera.aspect;
 
-      const pac = fixo.querySelector(".cafe__pacote");
+      const pac = pacoteEl;
       centroPacote = pac ? (0.5 - (pac.offsetTop + pac.offsetHeight / 2) / h) * 2 * meiaA : 0;
     }
     tamanho(); window.addEventListener("resize", tamanho);
@@ -86,7 +87,9 @@ if (fixo && canvasFrente) {
 
       const retrato = camera.aspect < 1;
       const rx = retrato ? meiaL * 0.62 : meiaL * 0.3, ry = retrato ? meiaA * 0.22 : meiaA * 0.66;
-      const oy = centroPacote;
+
+      let oy = centroPacote;
+      if (retrato && pacoteEl) { const r = pacoteEl.getBoundingClientRect(), f = fixo.getBoundingClientRect(); oy = (0.5 - ((r.top + r.bottom) / 2 - f.top) / f.height) * 2 * meiaA; }
       for (let i = 0; i < n; i++) {
         const d = dados[i];
         const boia = estado.calmo ? 0 : Math.sin(tempo * 0.9 + d.fase) * 0.12;

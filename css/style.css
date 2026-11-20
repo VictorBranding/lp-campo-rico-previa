@@ -332,7 +332,8 @@ a { color: inherit; }
 
   .cafe__pacote { inset: 11svh 0 calc(100lvh - 100svh) 0; width: min(40vw, 28svh); height: calc(min(40vw, 28svh) * 857 / 608); }
   .cafe__capsula { --cw: min(32vw, 22svh); inset: 11svh 0 calc(100lvh - 100svh) 0; }
-  .sol { width: 86vw; bottom: 38vh; }
+  .sol { width: 86vw; bottom: calc(100lvh - 100svh + 45svh); }
+  .notas { bottom: calc(100lvh - 100svh + 5svh); }
   .cafe__intro { top: 84px; width: auto; right: var(--margem); }
   .cafe__intro h2 { font-size: 40px; }
   .cafe__intro-lado { left: var(--margem); width: auto; bottom: calc(100lvh - 100svh + 24px); }

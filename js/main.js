@@ -293,6 +293,10 @@
   };
   const manejo = gsap.timeline({ scrollTrigger: { trigger: ".manejo", start: "top top", end: "bottom bottom", scrub: 0.6, invalidateOnRefresh: true,
     onUpdate: (st) => { const i = Math.max(0, Math.min(itens.length - 1, Math.floor((st.progress - 0.26) / 0.17))); mostraVideo(st.progress < 0.26 ? 0 : i); } } });
+
+  let carregados = false;
+  ScrollTrigger.create({ trigger: ".manejo", start: () => `top bottom+=${vh() * 2}`, once: true,
+    onEnter: () => { if (carregados) return; carregados = true; videos.forEach((v) => { v.preload = "auto"; v.load(); }); } });
   ScrollTrigger.create({ trigger: ".manejo", start: "top bottom", end: "bottom top",
     onToggle: (s) => { noManejo = s.isActive; const a = atual; atual = -1; if (noManejo) mostraVideo(Math.max(0, a)); else videos.forEach((v) => v.pause()); } });
   manejo.fromTo(".manejo__midia", { clipPath: () => celular() ? "inset(20% 26% 20% 26% round 999px)" : "inset(8% 38% 8% 38% round 999px)" },

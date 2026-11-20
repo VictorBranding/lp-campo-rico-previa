@@ -215,7 +215,7 @@ a { color: inherit; }
 .manejo { position: relative; height: 340vh; background: var(--verde); }
 .manejo__fixo { position: sticky; top: 0; height: 100vh; overflow: hidden; }
 .manejo__midia { position: absolute; inset: 12vh var(--margem); border-radius: 48px; overflow: hidden; background: var(--verde-escuro); will-change: clip-path; }
-.manejo__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; }
+.manejo__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; will-change: opacity, transform; transform: translateZ(0); }
 .manejo__video:first-child { opacity: 1; }
 .manejo__veu { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,40,6,.65), rgba(10,40,6,.15) 40%, rgba(10,40,6,.7)); pointer-events: none; }
 .manejo__titulo { position: absolute; left: 0; right: 0; top: 14vh; margin: 0 auto; max-width: 16ch; text-align: center; font-size: clamp(36px, 4.6vw, 80px); font-weight: 500; font-stretch: 112%; letter-spacing: -.03em; line-height: 1; text-shadow: 0 2px 24px rgba(0,0,0,.35); }

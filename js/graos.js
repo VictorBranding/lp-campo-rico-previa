@@ -82,7 +82,8 @@ if (fixo && canvasFrente) {
       const local = p < 0.5 ? gsap_clamp(p / 0.25) : gsap_clamp((p - 0.67) / 0.33);
 
       const retrato = camera.aspect < 1;
-      const rx = retrato ? meiaL * 0.62 : meiaL * 0.3, ry = retrato ? meiaA * 0.3 : meiaA * 0.66;
+      const rx = retrato ? meiaL * 0.62 : meiaL * 0.3, ry = retrato ? meiaA * 0.22 : meiaA * 0.66;
+      const oy = retrato ? -meiaA * 0.13 : 0;
       for (let i = 0; i < n; i++) {
         const d = dados[i];
         const boia = estado.calmo ? 0 : Math.sin(tempo * 0.9 + d.fase) * 0.12;
@@ -90,7 +91,7 @@ if (fixo && canvasFrente) {
         const y = Math.sin(d.ang) * ry * d.raio + (0.5 - local) * meiaA * 0.06 * d.sobe + boia;
 
         const k = estado.graos ?? 1, ke = k * k * (3 - 2 * k);
-        pos.set(x * ke, y * ke - (1 - ke) * meiaA * 0.05, d.z * ke);
+        pos.set(x * ke, y * ke + oy - (1 - ke) * meiaA * 0.05, d.z * ke);
         q.setFromEuler(e.set(d.r.x + p * d.giro.x, d.r.y + p * d.giro.y, d.r.z + p * d.giro.z + boia));
         s.setScalar(d.t * (0.15 + 0.85 * ke));
         m.compose(pos, q, s); mesh.setMatrixAt(i, m);

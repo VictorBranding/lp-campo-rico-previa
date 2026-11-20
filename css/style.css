@@ -84,7 +84,7 @@ a { color: inherit; }
 .menu__rodape { position: absolute; left: var(--margem); bottom: 28px; margin: 0; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; color: var(--creme); }
 
 .topo { position: relative; height: 320vh; }
-.topo__fixo { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: var(--verde); }
+.topo__fixo { position: sticky; top: 0; height: 100vh; height: 100lvh; overflow: hidden; background: var(--verde); }
 .topo__texto { position: absolute; z-index: 3; left: var(--margem); top: 50%; transform: translateY(-44%); width: min(42vw, 600px); }
 .topo__logo { width: min(21vw, 300px); height: auto; margin: 0 0 32px; }
 .topo h1 { font-size: clamp(30px, 3vw, 48px); line-height: 1.08; font-weight: 500; font-stretch: 112%; letter-spacing: -.015em; margin: 0 0 20px; }
@@ -110,7 +110,7 @@ a { color: inherit; }
 .abertura__texto p { margin: 0; text-align: center; padding: 0 var(--margem); font-size: clamp(48px, 9vw, 150px); font-weight: 500; font-stretch: 115%; letter-spacing: -.03em; color: var(--claro); text-shadow: 0 2px 40px rgba(0,0,0,.25); }
 
 .cafe { position: relative; height: 600vh; }
-.cafe__fixo { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: var(--verde); }
+.cafe__fixo { position: sticky; top: 0; height: 100vh; height: 100lvh; overflow: hidden; background: var(--verde); }
 .graos { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 3; pointer-events: none; }
 .cafe__capsula { --cw: min(24vw, 38vh); position: absolute; z-index: 1; inset: 0; margin: auto; width: var(--cw); height: calc(var(--cw) * 2); border-radius: 999px; background: var(--laranja); }
 .cafe__pacote { position: absolute; z-index: 2; inset: 0; margin: auto; width: min(30vw, 52vh); height: calc(min(30vw, 52vh) * 857 / 608); will-change: transform;
@@ -322,18 +322,18 @@ a { color: inherit; }
   .topo .botao { min-height: 44px; padding: 0 14px; font-size: 14px; }
   .topo .botoes { flex-wrap: nowrap; gap: 8px; }
 
-  .colunas { top: auto; bottom: 0; left: 0; right: 0; width: auto; height: clamp(200px, calc(100svh - 455px), 52%); display: flex; flex-direction: column; gap: 8px; padding-bottom: 12px; }
+  .colunas { top: auto; bottom: calc(100lvh - 100svh); left: 0; right: 0; width: auto; height: clamp(200px, calc(100svh - 455px), 52%); display: flex; flex-direction: column; gap: 8px; padding-bottom: 12px; }
   .coluna { flex: 1; min-height: 0; height: auto; }
   .trilho { flex-direction: row; height: 100%; width: max-content; gap: 8px; }
   .colunas .forma { width: auto; height: 100%; }
   .colunas .capsula { aspect-ratio: 2.25 / 1; }
   .abertura__texto p { font-size: 44px; line-height: 1.02; }
-  .cafe__pacote { width: 56vw; height: calc(56vw * 857 / 608); }
-  .cafe__capsula { --cw: 42vw; }
+  .cafe__pacote { inset: 9vh 0 0 0; width: 46vw; height: calc(46vw * 857 / 608); }
+  .cafe__capsula { --cw: 36vw; inset: 9vh 0 0 0; }
   .sol { width: 86vw; bottom: 38vh; }
   .cafe__intro { top: 84px; width: auto; right: var(--margem); }
-  .cafe__intro h2 { font-size: 44px; }
-  .cafe__intro-lado { left: var(--margem); width: auto; bottom: 5vh; }
+  .cafe__intro h2 { font-size: 40px; }
+  .cafe__intro-lado { left: var(--margem); width: auto; bottom: calc(100lvh - 100svh + 24px); }
   .cafe__intro-lado p { font-size: 16px; }
   .ficha__item { width: 46vw; }
   .ficha__item:nth-child(1), .ficha__item:nth-child(2) { top: 12vh; }

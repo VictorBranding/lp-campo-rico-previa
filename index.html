@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=e4b1a58">
+<link rel="stylesheet" href="css/style.css?v=2dc9411">
 </head>
 <body>
 <header class="barra">
@@ -34,9 +34,9 @@
     <li><a href="#contato">Contato</a></li>
   </ul>
   <div class="menu__fotos" aria-hidden="true">
-    <span class="forma capsula foto"><img src="img/lavoura-cafe-por-do-sol-800.webp" alt=""></span>
-    <span class="forma capsula foto"><img src="img/gado-por-do-sol-800.webp" alt=""></span>
-    <span class="forma capsula foto"><img src="img/eucalipto-por-do-sol-800.webp" alt=""></span>
+    <span class="forma capsula foto"><img loading="lazy" decoding="async" src="img/lavoura-cafe-por-do-sol-800.webp" alt=""></span>
+    <span class="forma capsula foto"><img loading="lazy" decoding="async" src="img/gado-por-do-sol-800.webp" alt=""></span>
+    <span class="forma capsula foto"><img loading="lazy" decoding="async" src="img/eucalipto-por-do-sol-800.webp" alt=""></span>
   </div>
   <p class="menu__rodape">Vale do Espinhaço · Norte de Minas Gerais</p>
 </nav>
@@ -107,7 +107,7 @@
           <span class="forma circulo verde-escuro"></span>
         </div></div>
       </div>
-      <div class="abertura" aria-hidden="true"><img class="abertura__base" src="img/serra-espinhaco.webp" alt=""><img class="abertura__cafe" src="img/serra-espinhaco.webp" alt=""></div>
+      <div class="abertura" aria-hidden="true"><img class="abertura__base" alt=""><img class="abertura__cafe" data-src="img/serra-espinhaco.webp" alt=""></div>
       <div class="abertura__texto">
         <div class="mira">
           <div class="mira__cab">
@@ -115,7 +115,7 @@
             <ul class="mira__dados"><li><b>1.200</b> hectares</li><li><b>1.000 m</b> de altitude</li></ul>
           </div>
           <div class="mira__lente" aria-hidden="true">
-            <img class="mira__foto" src="img/talhoes-aereo.webp" alt="">
+            <img class="mira__foto" data-src="img/talhoes-aereo.webp" alt="">
             <svg class="mira__mapa" viewBox="0 0 1024 576" preserveAspectRatio="xMidYMid slice">
               <path class="mira__area" d="M300 215 L470 95 L800 150 L765 262 L600 300 L560 420 L470 548 L300 470 L210 330 Z"/>
               <g transform="translate(500 300)"><g class="mira__pino"><path d="M0 0 C-14 -26 -34 -40 -34 -64 A34 34 0 1 1 34 -64 C34 -40 14 -26 0 0 Z"/><circle cx="0" cy="-64" r="14"/></g></g>
@@ -131,7 +131,7 @@
     <div class="granulado" aria-hidden="true"></div>
     <h2 id="desafio-h" class="desafio__titulo">
       <span class="desafio__linha">A terra do norte de Minas</span>
-      <span class="desafio__linha desafio__linha--meio"><span class="desafio__capsula" aria-hidden="true"><img src="img/gado-por-do-sol-800.webp" alt=""></span> pede outro</span>
+      <span class="desafio__linha desafio__linha--meio"><span class="desafio__capsula" aria-hidden="true"><img loading="lazy" decoding="async" src="img/gado-por-do-sol-800.webp" alt=""></span> pede outro</span>
       <span class="desafio__linha">jeito de plantar.</span>
     </h2>
     <p class="desafio__texto">Sol forte, chuva concentrada em poucos meses e pastos cansados. Quem planta aqui precisa medir a água, proteger o solo e pensar a fazenda inteira, não só a safra.</p>
@@ -178,7 +178,7 @@
   </section>
   <section class="manejo" id="manejo" aria-labelledby="manejo-h">
     <div class="manejo__fixo">
-      <div class="manejo__midia"><video class="manejo__video" src="video/gado-rebanho.mp4" poster="video/gado-rebanho-capa.webp" muted loop playsinline preload="metadata" aria-hidden="true"></video><video class="manejo__video" src="video/vacas-pasto.mp4" poster="video/vacas-pasto-capa.webp" muted loop playsinline preload="none" aria-hidden="true"></video><video class="manejo__video" src="video/cafe-frutos.mp4" poster="video/cafe-frutos-capa.webp" muted loop playsinline preload="none" aria-hidden="true"></video><video class="manejo__video" src="video/eucalipto-troncos.mp4" poster="video/eucalipto-troncos-capa.webp" muted loop playsinline preload="none" aria-hidden="true"></video><div class="manejo__veu" aria-hidden="true"></div></div>
+      <div class="manejo__midia"><video class="manejo__video" src="video/gado-rebanho.mp4" poster="video/gado-rebanho-capa.webp" muted loop playsinline preload="none" aria-hidden="true"></video><video class="manejo__video" src="video/vacas-pasto.mp4" poster="video/vacas-pasto-capa.webp" muted loop playsinline preload="none" aria-hidden="true"></video><video class="manejo__video" src="video/cafe-frutos.mp4" poster="video/cafe-frutos-capa.webp" muted loop playsinline preload="none" aria-hidden="true"></video><video class="manejo__video" src="video/eucalipto-troncos.mp4" poster="video/eucalipto-troncos-capa.webp" muted loop playsinline preload="none" aria-hidden="true"></video><div class="manejo__veu" aria-hidden="true"></div></div>
       <h2 id="manejo-h" class="manejo__titulo">Lavoura, gado e floresta na mesma terra</h2>
       <ul class="manejo__itens">
         <li class="esq"><span class="manejo__num">01</span><strong>Sombra para o gado</strong>O eucalipto em faixas baixa o calor no pasto.</li>
@@ -316,9 +316,9 @@
       <h2 id="contato-h">Venha conhecer a Campo Rico.</h2>
       <p>Visitas com hora marcada para compradores, parceiros e proprietários de terra.</p>
       <div class="contato__capsulas" aria-hidden="true">
-        <span class="forma capsula foto"><img src="img/maos-colhendo-cafe-800.webp" alt=""></span>
+        <span class="forma capsula foto"><img loading="lazy" decoding="async" src="img/maos-colhendo-cafe-800.webp" alt=""></span>
         <span class="forma circulo laranja"></span>
-        <span class="forma capsula foto"><img src="img/gado-nelore-pasto-800.webp" alt=""></span>
+        <span class="forma capsula foto"><img loading="lazy" decoding="async" src="img/gado-nelore-pasto-800.webp" alt=""></span>
       </div>
     </div>
     <form class="formulario" action="mailto:contato@camporico.example" method="post" enctype="text/plain">
@@ -337,7 +337,7 @@
 <footer class="rodape">
   <div class="granulado" aria-hidden="true"></div>
   <div class="rodape__topo">
-    <img class="rodape__logo" src="img/logo-horizontal-laranja-branco.svg" alt="Agropecuária Campo Rico">
+    <img loading="lazy" decoding="async" class="rodape__logo" src="img/logo-horizontal-laranja-branco.svg" alt="Agropecuária Campo Rico">
     <p class="rodape__frase">Café, eucalipto e gado no Vale do Espinhaço.</p>
     <a class="botao botao--laranja" href="#contato">Agendar uma visita</a>
   </div>
@@ -366,13 +366,17 @@
     <a class="rodape__subir" href="#topo">Voltar ao topo<span aria-hidden="true">↑</span></a>
   </div>
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script type="importmap">
 { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/" } }
 </script>
-<script src="js/main.js?v=e4b1a58"></script>
-<script type="module" src="js/graos.js?v=e4b1a58"></script>
+<script defer src="js/main.js?v=2dc9411"></script>
+<script type="module">
+const cafe = document.querySelector(".cafe");
+  const obs = new IntersectionObserver((ents) => { if (ents.some((e) => e.isIntersecting)) { obs.disconnect(); import("./js/graos.js?v=2dc9411"); } }, { rootMargin: "200% 0px" });
+  if (cafe) obs.observe(cafe);
+</script>
 </body>
 </html>

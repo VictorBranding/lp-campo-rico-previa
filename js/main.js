@@ -105,7 +105,14 @@
     loops.forEach((l) => l.timeScale(gsap.utils.interpolate(l.timeScale(), 1 + extra, 0.08)));
   });
 
-  new Set([...document.querySelectorAll(".colunas .foto img")].map((i) => i.src.replace("-800.webp", "-1800.webp"))).forEach((s) => { const im = new Image(); im.src = s; });
+  let grandesCarregadas = false;
+  const carregaGrandes = () => {
+    if (grandesCarregadas) return; grandesCarregadas = true;
+    new Set([...document.querySelectorAll(".colunas .foto img")].map((i) => i.src.replace("-800.webp", "-1800.webp"))).forEach((s) => { const im = new Image(); im.src = s; });
+    document.querySelectorAll("img[data-src]").forEach((im) => { im.src = im.dataset.src; im.removeAttribute("data-src"); });
+  };
+  window.addEventListener("scroll", carregaGrandes, { once: true, passive: true });
+  window.addEventListener("load", () => setTimeout(carregaGrandes, 4000));
 
   gsap.utils.toArray(".colunas .foto img").forEach((img, i) => {
     gsap.to(img, { scale: 1.24, duration: 7 + (i % 4), ease: "sine.inOut", yoyo: true, repeat: -1, delay: i * 0.4 });
@@ -191,18 +198,19 @@
   const pacote = document.querySelector(".cafe__pacote");
   const N = 49, MEIO = 25, quadros = [];
   let temGiro = true;
-  for (let i = 1; i <= N; i++) {
-    const im = new Image(); im.src = `img/giro/giro-${String(i).padStart(2, "0")}.webp`;
-    im.onerror = () => (temGiro = false); quadros.push(im);
-  }
+  for (let i = 1; i <= N; i++) { const im = new Image(); im.onerror = () => (temGiro = false); quadros.push(im); }
+
+  const carregaGiro = () => quadros.forEach((im, k) => { if (!im.src) im.src = `img/giro/giro-${String(k + 1).padStart(2, "0")}.webp`; });
+  new IntersectionObserver((ents, obs) => { if (ents.some((e) => e.isIntersecting)) { carregaGiro(); obs.disconnect(); } },
+    { rootMargin: "200% 0px" }).observe(document.querySelector(".cafe"));
   const giro = { q: MEIO };
   const imA = pacote.querySelector(".pacote__a"), imB = pacote.querySelector(".pacote__b");
   let atualA = 0, atualB = 0;
   function mostra(q) {
     if (!temGiro) return;
     const f = gsap.utils.clamp(1, N, q), i = Math.floor(f), frac = f - i, j2 = Math.min(i + 1, N);
-    if (i !== atualA && quadros[i - 1].complete) { imA.src = quadros[i - 1].src; atualA = i; }
-    if (j2 !== atualB && quadros[j2 - 1].complete) { imB.src = quadros[j2 - 1].src; atualB = j2; }
+    if (i !== atualA && quadros[i - 1].src && quadros[i - 1].complete) { imA.src = quadros[i - 1].src; atualA = i; }
+    if (j2 !== atualB && quadros[j2 - 1].src && quadros[j2 - 1].complete) { imB.src = quadros[j2 - 1].src; atualB = j2; }
 
     imB.style.opacity = gsap.utils.clamp(0, 1, (frac - 0.42) / 0.16).toFixed(3);
   }
@@ -275,8 +283,8 @@
 
   const frase = document.querySelector(".manifesto__frase");
   if (frase) {
-    frase.setAttribute("aria-label", frase.textContent.trim());
-    frase.innerHTML = frase.textContent.trim().split(/\s+/).map((p) => `<span class="palavra" aria-hidden="true">${p}</span>`).join(" ");
+    const texto = frase.textContent.trim();
+    frase.innerHTML = `<span class="so-leitor">${texto}</span>` + texto.split(/\s+/).map((p) => `<span class="palavra" aria-hidden="true">${p}</span>`).join(" ");
     gsap.to(".manifesto__frase .palavra", { opacity: 1, stagger: 0.1, ease: "none",
       scrollTrigger: { trigger: ".manifesto", start: "top 65%", end: "center 45%", scrub: 0.6 } });
 

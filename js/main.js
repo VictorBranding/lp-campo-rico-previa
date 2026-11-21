@@ -3,6 +3,14 @@
   window.cafeEstado = { progresso: 0, velocidade: 0, calmo, graos: calmo ? 1 : 0 };
   const barra = document.querySelector(".barra");
 
+  const form = document.querySelector(".formulario");
+  if (form) form.addEventListener("submit", (ev) => {
+    ev.preventDefault();
+    const d = new FormData(form);
+    const corpo = `Nome: ${d.get("nome")}\nE-mail: ${d.get("email")}\n\n${d.get("mensagem") || ""}`;
+    window.location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent(d.get("assunto"))}&body=${encodeURIComponent(corpo)}`;
+  });
+
   const botaoMenu = document.querySelector(".barra__menu-botao");
   const menu = document.getElementById("menu");
   let lenis = null;
@@ -358,12 +366,13 @@
 
   const faz = gsap.timeline({ scrollTrigger: { trigger: ".fazendas", start: "top top", end: "bottom bottom", scrub: 0.6, invalidateOnRefresh: true } });
   faz.fromTo(".fazendas__foto", { clipPath: "inset(0% 0% 0% 0% round 0px)" },
-             { clipPath: () => celular() ? "inset(10% 25% 64% 25% round 999px)" : "inset(10% 58% 10% 6% round 999px)", duration: 0.55, ease: "power2.inOut" }, 0.05)
-     .fromTo(".fazendas__foto img", { scale: 1.15 }, { scale: 1, duration: 0.7, ease: "none" }, 0)
+             { clipPath: () => celular() ? "inset(10% 25% 64% 25% round 999px)" : "inset(10% 58% 10% 6% round 999px)", duration: 0.3, ease: "power2.inOut" }, 0.03)
+     .fromTo(".fazendas__foto img", { scale: 1.15 }, { scale: 1, duration: 0.4, ease: "none" }, 0)
 
-     .fromTo(".fazendas__foto img", { xPercent: 0, yPercent: 0 }, { xPercent: () => celular() ? 0 : -26, yPercent: () => celular() ? -12 : 0, duration: 0.55, ease: "power2.inOut" }, 0.05)
-     .fromTo(".fazendas__texto", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.2 }, 0.45)
-     .to({}, { duration: 0.2 }, 0.8);
+     .fromTo(".fazendas__foto img", { xPercent: 0, yPercent: 0 }, { xPercent: () => celular() ? 0 : -26, yPercent: () => celular() ? -12 : 0, duration: 0.3, ease: "power2.inOut" }, 0.03)
+
+     .fromTo(".fazendas__texto", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.12 }, 0.28)
+     .to({}, { duration: 0.01 }, 0.99);
 
   const faixa = document.querySelector(".faixa__trilho");
   if (faixa) {

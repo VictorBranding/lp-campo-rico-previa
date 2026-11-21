@@ -255,7 +255,7 @@ a { color: inherit; }
 .numeros__rotulo { display: block; margin-top: 12px; font-size: 18px; color: var(--tinta); max-width: 20ch; }
 .numeros__nota { position: relative; margin: 48px 0 0; font-size: 14px; }
 
-.fazendas { position: relative; height: 240vh; background: var(--verde-escuro); }
+.fazendas { position: relative; height: 340vh; background: var(--verde-escuro); }
 .fazendas__fixo { position: sticky; top: 0; height: 100vh; overflow: hidden; }
 .fazendas__foto { position: absolute; inset: 0; overflow: hidden; will-change: clip-path; }
 .fazendas__foto img { width: 100%; height: 100%; object-fit: cover; }

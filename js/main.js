@@ -111,12 +111,19 @@
     gsap.to(img, { scale: 1.24, duration: 7 + (i % 4), ease: "sine.inOut", yoyo: true, repeat: -1, delay: i * 0.4 });
   });
 
+  const areaFazenda = document.querySelector(".mira__area");
+  const desenhaArea = gsap.timeline({ paused: true })
+    .fromTo(".mira__area", { fillOpacity: 0, strokeDashoffset: 600, opacity: 0 }, { opacity: 1, strokeDashoffset: 0, duration: 1.1, ease: "power2.out" })
+    .to(".mira__area", { fillOpacity: 1, duration: 0.6 }, 0.6)
+    .fromTo(".mira__pino", { y: -60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "bounce.out" }, 0.7);
+  if (areaFazenda) gsap.to(".mira__area", { strokeDashoffset: "-=320", duration: 6, ease: "none", repeat: -1, delay: 1.2 });
+
   const topo = gsap.timeline({ scrollTrigger: { trigger: ".topo", start: "top top", end: "bottom bottom", scrub: 0.6, invalidateOnRefresh: true } });
   document.querySelectorAll(".coluna").forEach((c) => topo.to(c, { [celular() ? "xPercent" : "yPercent"]: parseFloat(c.dataset.vel) * (celular() ? 25 : 40), ease: "none", duration: 0.38 }, 0));
   topo.to(".topo__texto", { autoAlpha: 0, y: -60, duration: 0.18, ease: "power1.in" }, 0.3);
 
   topo.to(".colunas", { autoAlpha: 0, duration: 0.08 }, 0.66)
-      .fromTo(".abertura__texto", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.12 }, 0.8);
+      .fromTo(".abertura__texto", { autoAlpha: 0, y: 40, scale: 0.96 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.12, onStart: () => desenhaArea.restart(), onReverseComplete: () => desenhaArea.pause(0) }, 0.8);
   const abertura = document.querySelector(".abertura"), aBase = abertura.querySelector(".abertura__base"), aImg = abertura.querySelector(".abertura__cafe");
   let origem = null, escondida = null;
   const cobre = (x, y, w, h, ar) => {
@@ -158,7 +165,7 @@
         origem = { x: r.left, y: y0, w: r.width, h: y1 - y0, s: gsap.getProperty(melhor.querySelector("img"), "scale") || 1 };
         const src = melhor.querySelector("img").src;
         aBase.src = src.replace("-800.webp", "-1800.webp");
-        origem.troca = !/lavoura-cafe-por-do-sol/.test(src);
+        origem.troca = true;
         escondida = melhor; escondida.style.visibility = "hidden";
       }
       const t = gsap.parseEase("power2.inOut")(gsap.utils.clamp(0, 1, (p - 0.42) / 0.34));
@@ -273,13 +280,24 @@
     gsap.to(".manifesto__frase .palavra", { opacity: 1, stagger: 0.1, ease: "none",
       scrollTrigger: { trigger: ".manifesto", start: "top 65%", end: "center 45%", scrub: 0.6 } });
 
-    gsap.utils.toArray(".manifesto__formas .forma").forEach((f, i) => {
-      const v = parseFloat(f.dataset.vel);
-      gsap.fromTo(f, { yPercent: 70 * v, scale: 0.4, rotation: i % 2 ? 8 : -8 }, { yPercent: -70 * v, scale: 1, rotation: 0, ease: "none",
-        scrollTrigger: { trigger: ".manifesto", start: "top bottom", end: "bottom top", scrub: 0.8 } });
-      const img = f.querySelector("img");
-      if (img) gsap.fromTo(img, { scale: 1.3 }, { scale: 1, ease: "none", scrollTrigger: { trigger: ".manifesto", start: "top bottom", end: "bottom top", scrub: true } });
-    });
+    const bolinhas = gsap.utils.toArray(".manifesto__formas .forma");
+    const sorteia = (a, b) => a + Math.random() * (b - a);
+    let manifestoNaTela = false;
+    const ciclo = (f) => {
+      if (!manifestoNaTela) { f._parado = true; return; }
+      gsap.timeline({ onComplete: () => gsap.delayedCall(sorteia(0.3, 1.8), () => ciclo(f)) })
+        .fromTo(f, { scale: 0 }, { scale: 1, duration: sorteia(0.5, 0.9), ease: "back.out(2)" })
+        .to(f, { scale: 0, duration: 0.45, ease: "power2.in" }, `+=${sorteia(1.4, 3.4)}`);
+    };
+    gsap.set(bolinhas, { scale: 0 });
+    ScrollTrigger.create({ trigger: ".manifesto", start: "top 80%", end: "bottom 20%",
+      onToggle: (s) => {
+        manifestoNaTela = s.isActive;
+        if (s.isActive) bolinhas.forEach((f) => { if (f._parado !== false) { f._parado = false; gsap.delayedCall(sorteia(0, 1.6), () => ciclo(f)); } });
+      } });
+
+    gsap.fromTo(".manifesto__fundo img", { scale: 1.15 }, { scale: 1, ease: "none",
+      scrollTrigger: { trigger: ".manifesto", start: "top bottom", end: "bottom top", scrub: true } });
     gsap.from(".manifesto__assina", { y: 24, autoAlpha: 0, duration: 0.8, scrollTrigger: { trigger: ".manifesto__assina", start: "top 85%" } });
   }
 
@@ -315,7 +333,7 @@
 
   gsap.timeline({ scrollTrigger: { trigger: ".ponte", start: "top top", end: "bottom bottom", scrub: 0.6, invalidateOnRefresh: true } })
     .fromTo(".ponte__foto", { clipPath: "circle(9% at 50% 50%)" }, { clipPath: "circle(75% at 50% 50%)", duration: 0.5, ease: "power2.inOut" }, 0)
-    .fromTo(".ponte__foto img", { scale: 1.35 }, { scale: 1, duration: 0.6, ease: "none" }, 0)
+    .fromTo(".ponte__foto img", { scale: 1.12 }, { scale: 1, duration: 0.4, ease: "none" }, 0)
     .fromTo(".ponte__texto", { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, duration: 0.2 }, 0.32)
     .to(".ponte__texto", { autoAlpha: 0, y: -40, duration: 0.15 }, 0.78)
     .to(".ponte__foto", { autoAlpha: 0, scale: 0.96, duration: 0.16, ease: "power1.in" }, 0.84);

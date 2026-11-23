@@ -138,6 +138,10 @@ a { color: inherit; }
 .cafe__pacote img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
 .cafe__pacote .pacote__b { opacity: 0; }
 
+.cafe__pacote .pacote__3d { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: pan-y; cursor: grab; }
+.cafe__pacote .pacote__3d.pegando { cursor: grabbing; }
+.cafe__pacote.pacote--3d img { visibility: hidden; }
+
 .sol { position: absolute; z-index: 1; left: 50%; bottom: 38vh; width: min(40vw, 62vh); aspect-ratio: 2 / 1; transform: translateX(-50%); overflow: hidden; opacity: 0; pointer-events: none; }
 .sol__disco { position: absolute; left: 0; right: 0; top: 0; aspect-ratio: 1; border-radius: 50%; background: var(--laranja); }
 

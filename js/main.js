@@ -209,13 +209,19 @@
   for (let i = 1; i <= N; i++) { const im = new Image(); im.onerror = () => (temGiro = false); quadros.push(im); }
 
   const carregaGiro = () => quadros.forEach((im, k) => { if (!im.src) im.src = `img/giro/giro-${String(k + 1).padStart(2, "0")}.webp`; });
-  new IntersectionObserver((ents, obs) => { if (ents.some((e) => e.isIntersecting)) { carregaGiro(); obs.disconnect(); } },
-    { rootMargin: "200% 0px" }).observe(document.querySelector(".cafe"));
+  window.cafeEstado.semTresD = carregaGiro;
+  new IntersectionObserver((ents, obs) => {
+    if (!ents.some((e) => e.isIntersecting)) return;
+    obs.disconnect();
+    if (window.cafeEstado.modo3D === "falhou") carregaGiro();
+    else setTimeout(() => { if (window.cafeEstado.modo3D !== "ok") carregaGiro(); }, 8000);
+  }, { rootMargin: "200% 0px" }).observe(document.querySelector(".cafe"));
   const giro = { q: MEIO };
   const imA = pacote.querySelector(".pacote__a"), imB = pacote.querySelector(".pacote__b");
   let atualA = 0, atualB = 0;
   function mostra(q) {
-    if (!temGiro) return;
+    window.cafeEstado.giroQ = q;
+    if (window.cafeEstado.modo3D === "ok" || !temGiro) return;
     const f = gsap.utils.clamp(1, N, q), i = Math.floor(f), frac = f - i, j2 = Math.min(i + 1, N);
     if (i !== atualA && quadros[i - 1].src && quadros[i - 1].complete) { imA.src = quadros[i - 1].src; atualA = i; }
     if (j2 !== atualB && quadros[j2 - 1].src && quadros[j2 - 1].complete) { imB.src = quadros[j2 - 1].src; atualB = j2; }
